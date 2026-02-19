@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Motor de Operações JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f4f4f4;
+        }
+        input {
+            margin: 5px;
+            padding: 5px;
+        }
+        .painel {
+            background: white;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h3 {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧮 Motor de Operações JavaScript</h1>
+
+    <label>Valor A:
+        <input type="number" id="valorA" oninput="calcular()">
+    </label>
+
+    <label>Valor B:
+        <input type="number" id="valorB" oninput="calcular()">
+    </label>
+
+    <div class="painel">
+        <h3>🔢 Operadores Aritméticos</h3>
+        <p id="aritmeticos"></p>
+
+        <h3>⚖️ Operadores de Comparação</h3>
+        <p id="comparacao"></p>
+
+        <h3>🔗 Operadores Lógicos</h3>
+        <p id="logicos"></p>
+
+        <h3>❓ Operador Ternário</h3>
+        <p id="ternario"></p>
+    </div>
+
+<script>
+function calcular() {
+    let a = Number(document.getElementById("valorA").value);
+    let b = Number(document.getElementById("valorB").value);
+
+    if (isNaN(a) || isNaN(b)) {
+        return;
+    }
+
+    // 🔢 Operadores Aritméticos
+    let soma = a + b;
+    let subtracao = a - b;
+    let multiplicacao = a * b;
+    let divisao = b !== 0 ? (a / b) : "Indefinido (divisão por zero)";
+    let potencia = a ** b;
+
+    document.getElementById("aritmeticos").innerHTML =
+        `Soma: ${soma} <br>
+         Subtração: ${subtracao} <br>
+         Multiplicação: ${multiplicacao} <br>
+         Divisão: ${divisao} <br>
+         Potência: ${potencia}`;
+
+    // ⚖️ Operadores de Comparação
+    document.getElementById("comparacao").innerHTML =
+        `A é igual a B? ${a == b} <br>
+         A é estritamente igual a B? ${a === b} <br>
+         A é maior que B? ${a > b} <br>
+         A é menor ou igual a B? ${a <= b}`;
+
+    // 🔗 Operadores Lógicos
+    let ambosPositivos = (a > 0 && b > 0);
+    let peloMenosUmPositivo = (a > 0 || b > 0);
+    let nenhumPositivo = !(a > 0 || b > 0);
+
+    document.getElementById("logicos").innerHTML =
+        `Ambos são positivos? ${ambosPositivos} <br>
+         Pelo menos um é positivo? ${peloMenosUmPositivo} <br>
+         Nenhum é positivo? ${nenhumPositivo}`;
+
+    // ❓ Operador Ternário
+    let maiorNumero = (a > b) ? "A é maior" :
+                      (a < b) ? "B é maior" :
+                      "Ambos são iguais";
+
+    document.getElementById("ternario").innerHTML = maiorNumero;
+}
+</script>
+
+</body>
+</html>
